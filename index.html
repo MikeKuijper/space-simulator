@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
+  <style>
+    body {
+      padding: 0;
+      margin: 10;
+    }
+  </style>
+  <script src="libraries/p5.min.js"></script>
+  <script src="libraries/p5.dom.min.js"></script>
+  <script src="libraries/p5.sound.min.js"></script>
+  <script src="libraries/p5.dom.js"></script>
+  <script src="sketch.js"></script>
+  <title>Rocket Landing Simulator</title>
+  <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+  <!-- <h1>Rocket Landing Simulator</h1> -->
+
+  <section class="page-header">
+    <h1 class="project-name">Space Simulator</h1>
+    <h2 class="project-tagline"></h2>
+
+  </section>
+
+  <section class="main-content">
+    <h2 id="welcome-to-github-pages">Welcome to the Space Simulator</h2>
+
+    <p> This is the Space Simulator, you can enter custom values to customize your simulation. Feeling technical? I've got you covered! Check the "Simulation Log" checkbox for a <b> complete </b> mission log! Now you can get the information of <b>every frame</b>
+      that's been rendered in the animation.</p>
+    <p> I don't recommend to use it together with Realtime Simulation, since the time intervals between rows of information are inconsistent. </p>
+
+    <h2> Smartphone App</h2>
+    <p> Like what you're seeing? Then you might like my Android App, it's called <a href="https://play.google.com/store/apps/details?id=nl.tridius.kuijper.mike.spacecalculator">Space Calculator</a> and is available in the Google Play Store. You can
+      use it to estimate how high a (model) rocket will go, if the rocket is fired straight up. </p>
+    <a href='https://play.google.com/store/apps/details?id=nl.tridius.kuijper.mike.spacecalculator&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' style="border:1px solid white; border-radius:6px; box-sizing:border-box; height:80px;"/></a>
+
+    <h1>Setup Simulation</h1>
+    <form id="inputForm">
+      <div class="row">
+        <div class="column">
+          <h2 style="text-align: center;">Rocket Properties</h2>
+          <label>Engine thrust at max throttle (N):</label><br>
+          <input class="numberInput" type="number" id="thrust" value="4000"><br>
+
+          <label>Rocket Mass with fuel (kg):</label><br>
+          <input class="numberInput" type="number" id="wetMass" value="200"><br>
+
+          <label>Rocket Mass without fuel (kg):</label><br>
+          <input class="numberInput" type="number" id="dryMass" value="80"><br>
+
+          <label>Fuel flow at full throttle (kg/s):</label><br>
+          <input class="numberInput" type="number" id="fuelFlow" value="10"><br>
+
+          <label>Stationary throttle (0 - 1):</label><br>
+          <input class="numberInput" type="number" id="stationaryThrottle" value="0.4"><br>
+
+          <h2 style="text-align: center;">Simulation Options</h2>
+          <label>Simulate in realtime</label>
+          <input id="realtime"type="checkbox" checked><br>
+          <label>Simulation Log</label>
+          <input id="log" type="checkbox"><br>
+
+      </div>
+
+        <div class="column">
+          <h2 style="text-align: center;">Environmental Properties</h2>
+          <label>Air pressure (hPa):</label><br>
+          <input class="numberInput" type="number" id="airPressure" value="1013.25"><br>
+          <label>Temperature (°C):</label><br>
+          <input class="numberInput" type="number" id="temperature" value="15"><br>
+
+          <h2 style="text-align: center;">Descend Path</h2>
+          <label>Vertical Velocity (m/s):</label><br>
+          <input class="numberInput" type="number" id="verticalVelocity" value="0"><br>
+          <label>Horizontal Velocity (m/s): <b>(Defective)</b></label><br>
+          <input class="numberInput" type="number" id="horizontalVelocity" value="0" disabled><br>
+          <label>Starting Altitude (m):</label><br>
+          <input class="numberInput" type="number" id="yStart" value="200"><br>
+          <label>Starting Horizontal offset (m):</label><br>
+          <input class="numberInput" type="number" id="xStart" value="0"><br>
+
+
+
+      </div>
+
+        <div style="text-align: center">
+          <a onClick="start()" class="myButton" style="align-content: center;">Start Simulation</a>
+          <a onClick="location.reload()" class="myButton" style="align-content: center; background-color:#CE1F1F; border:1px solid #B30F0F;">Reset Simulation</a>
+        </div>
+      </div>
+    </form>
+    <br>
+
+    <h2> Zoom </h2>
+    <div id="slider-holder"></div> <br> 
+
+    <!-- P5.JS SKETCH WILL BE DISPLAYED HERE -->
+    <div id="sketch-holder" class="container"></div>
+
+
+    <h3> Space Simulator was made by <a href="https://mikekuijper.github.io/">Mike Kuijper</a>, in September of 2018 </h3>
+
+    <footer class="site-footer">
+
+      <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+    </footer>
+  </section>
+</body>
+
+</html>
