@@ -189,7 +189,7 @@ function preload() {
 //////////    Setup function    \\\\\\\\\\
 function setup() {
   canvas = createCanvas(900, 900 * (9 / 16));
-  canvas.position((windowWidth - width) / 2);
+  //canvas.position((windowWidth - width) / 2);
   canvas.parent('sketch-holder');
 
   print("Page loaded");
@@ -215,7 +215,7 @@ function setup() {
 //////////    Frame draw function    \\\\\\\\\\      // Gets executed every frame
 function draw() {
   angleMode(DEGREES);
-  canvas.position((windowWidth - width) / 2);
+  //canvas.position((windowWidth - width) / 2);
   if (started) {
     colorMode(RGB, 255);
     zoom = slider.value() / 100;
@@ -498,6 +498,8 @@ function start() {
   print("Simulation started...");
   print("Detected the folowing variables: ");
   print(conditions, rocket);
+
+  window.scrollTo(0,document.body.scrollHeight);
 
   started = true;
   loop();
