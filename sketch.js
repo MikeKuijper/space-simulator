@@ -27,6 +27,7 @@ let simulationFrequency = 100; // If realtime (the above) is false, then it appl
 let debugMode = false; // Turn on for visible debug variables
 let zoom = 0.25; // Simulation zoom
 let log = true; // True if you'd like to download a flightlog of every frame afterwards
+let iterations = 1000;
 //////////////////////////////////////////////////
 
 //////////    Non-customizable Variables    \\\\\\\\\\
@@ -241,10 +242,12 @@ function draw() {
     else if (realtime) interval = (1 / frameRate());
     else interval = (1 / simulationFrequency);
 
-    /// Apply physics \\\
-    if (!rocket.hasImpacted) {
-      flightController(rocket);
-      rocket.simulate(interval);
+    for (let i = 0; i < iterations; i++) {
+      /// Apply physics \\\
+      if (!rocket.hasImpacted) {
+        flightController(rocket);
+        rocket.simulate(interval / iterations);
+      }
     }
 
     updatePosition(rocket);
@@ -314,12 +317,12 @@ function displayTelemetry(r) {
 
   let textHeight = 20;
 
-  text("Frame rate:           " + nfc(frameRate(), 3), normalTextIndent, textHeight);
-  text("fps", unitTextIndent, textHeight);
-  textHeight += 15;
-  text("Simulation interval:  " + nfc(interval, 4), normalTextIndent, textHeight);
-  text("s", unitTextIndent, textHeight);
-  textHeight += 15;
+  //text("Frame rate:           " + nfc(frameRate(), 3), normalTextIndent, textHeight);
+  //text("fps", unitTextIndent, textHeight);
+  //textHeight += 15;
+  //text("Simulation interval:  " + nfc(interval, 4), normalTextIndent, textHeight);
+  //text("s", unitTextIndent, textHeight);
+  //textHeight += 15;
   text("Mission time:         " + nfc(r.time, 3), normalTextIndent, textHeight);
   text("s", unitTextIndent, textHeight);
   textHeight += 15;
@@ -360,10 +363,10 @@ function displayTelemetry(r) {
     text("Impact time:          " + nfc(r.impactTime, 2), normalTextIndent, textHeight);
     text("s", unitTextIndent, textHeight);
     textHeight += 15;
-    text("Impact velocity:      " + nfc(r.impactVelocity, 2), normalTextIndent, textHeight);
+    text("Impact velocity:      " + nfc(r.impactVelocity, 4), normalTextIndent, textHeight);
     text("m/s", unitTextIndent, textHeight);
     textHeight += 15;
-    text("Impact velocity:      " + nfc((r.impactVelocity * 3.6), 2), normalTextIndent, textHeight);
+    text("Impact velocity:      " + nfc((r.impactVelocity * 3.6), 4), normalTextIndent, textHeight);
     text("km/h", unitTextIndent, textHeight);
     textHeight += 15;
     text("Fuel spent:           " + nfc((r.wetMass - r.mass), 2), normalTextIndent, textHeight);
